@@ -1,6 +1,12 @@
+var logger = require('../util/logger');
+
 module.exports = function(){
 	return function(err,req,res,next){
-	console.log(err.message);
-	res.send(err.message);
+	  if(err.message == 'UnauthorizedError'){
+	  	return res.status(401).send('Invalid Token')
+	  }
+
+	  logger.error(err.stack);
+  	  res.status(500).send('Oops');
 }
 }

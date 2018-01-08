@@ -4,7 +4,11 @@ var config = {
   dev: 'development',
   test: 'testing',
   prod: 'production',
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 3000,
+  jwtExpires: 10*24*60, //10 days in seconds
+  secrets:{
+  	jwt: process.env.jwt || 'apoel'
+  }
 };
 
 process.env.NODE_ENV = process.env.NODE_ENV || config.dev;

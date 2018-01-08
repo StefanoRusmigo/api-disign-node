@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.13.2",
     "colors": "^1.1.2",
     "express": "^4.13.1",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^8.1.0",
     "lodash": "^3.10.0",
     "mongoose": "^4.0.8",
     "morgan": "^1.6.1"
