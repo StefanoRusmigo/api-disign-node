@@ -10,6 +10,7 @@ exports.decodeToken = function(){
 
 			req.headers.authorization = 'Bearer '+ req.query.accessToken;
 		}
+
 		checkToken(req,res,next);
 	}
 }
@@ -17,9 +18,11 @@ exports.decodeToken = function(){
 exports.getFreshUser = function(){
 
 	return function(req,res,next){
+
 		User.findById(req.user._id)
 		.then((doc)=>{
 			req.user = doc;
+			next();
 		})
 		.catch((e)=>{
 			next(e);

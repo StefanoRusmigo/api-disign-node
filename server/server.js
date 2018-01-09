@@ -19,6 +19,6 @@ app.use('/api/', api);
 app.use('/auth', require('./auth/routes'));
 
 // set up global error handling
-require('./middleware/err');
+app.use(require('./middleware/err'));
 // export the app for testing
 module.exports = app;

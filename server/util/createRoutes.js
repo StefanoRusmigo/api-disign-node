@@ -8,8 +8,10 @@ return{
 
  params(req, res, next) {
   let id = req.params.id;
-  console.log(id)
   Model.findById(id)
+    .select('-password')
+    .populate('author', 'username')
+    .populate('categories')
     .then(function(doc) {
       if (!doc) {
         next(new Error('No '+modelName+' with that id'));
@@ -25,13 +27,14 @@ return{
 get(req, res, next) {
 	if(populate){
 	 Model.find()
-  	 .populate('author category')
-  	 .exec()
+  	 .populate('author', 'username')
+     .populate('categories')
   	 .then((docs)=>{
     res.send(docs);
   },(err)=> next(err));
 	}else{
 		Model.find()
+    .select('-password')
 		.then((doc)=>{
 			res.send(doc);
 		},(err)=> {next(err)})
@@ -62,7 +65,6 @@ put(req, res, next) {
 
 post(req, res, next) {
   var newdoc = req.body;
-
   Model.create(newdoc)
     .then(function(doc) {
       res.json(doc);
